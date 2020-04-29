@@ -7,16 +7,6 @@ exports.getUsers = (req, res) => {
     .catch((err) => res.status(400).json("Error:" + err));
 };
 
-// exports.postAddUser=(req, res) => {
-//     const username = req.body.username;
-//     console.log(req.body.username);
-//     const newUser = new User({ username });
-//     newUser
-//       .save()
-//       .then(() => res.json("user Added"))
-//       .catch((err) => res.status(400).json("Error:" + err));
-//   };
-
 exports.patchUpdateUser = (req, res) => {
   User.findById(req.params.id)
     .then((user) => {
@@ -39,23 +29,3 @@ exports.patchUpdateUser = (req, res) => {
     })
     .catch((err) => res.status(400).json("error:" + err));
 };
-
-/* ------------------------------ boolig module ----------------------------- */
-
-exports.postBooking = (req, res) => {
-  const category = req.body.category;
-  const status = req.body.status;
-  console.log(req.params);
-  User.findById(req.params.id).then((user) => {
-    const booking = new Booking({
-      category: category,
-      status: status,
-      userId: user,
-    });
-    booking.save().then(() => {
-      res.json(booking);
-    });
-  });
-};
-
-/* -------------------------------------------------------------------------- */

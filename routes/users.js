@@ -17,10 +17,4 @@ router.patch(
   userController.patchUpdateUser
 );
 
-/* --------------------------------- booking -------------------------------- */
-
-router.post("/:id/booking", userController.postBooking);
-
-/* -------------------------------------------------------------------------- */
-
 module.exports = router;

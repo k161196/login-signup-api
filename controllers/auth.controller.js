@@ -46,19 +46,11 @@ exports.postLogin = (req, res) => {
           console.log("pass word match");
           console.log(user.id);
           const token = signToken(user.id);
-          // return res.json(user);
-          // let token = jwt.sign({user}, config.secret, {
-          //   expiresIn: "24h", // expires in 24 hours
-          // });
           console.log(token);
           return res.json({
             success: true,
             message: "Authenticated Successfull",
             token: token,
-            // user:{
-            //   id:user.local._id,
-            //     email:user.local.email,
-            // }
           });
         }
         return res.status(400).json("invalid pass");
@@ -126,6 +118,8 @@ exports.postSignup = (req, res) => {
   });
 };
 
+/* ------------------------------ google oauth ------------------------------ */
+
 exports.oauthGoogle = (req, res) => {
   console.log("hi from auth con oauth");
   const token = signToken(req.user.id);
@@ -136,6 +130,9 @@ exports.oauthGoogle = (req, res) => {
     // user:user
   });
 };
+/* -------------------------------------------------------------------------- */
+
+/* ------------------------------ conform mail ------------------------------ */
 
 exports.confirmationEmail = (req, res) => {
   console.log("enetr in token check email confirm");
@@ -171,21 +168,9 @@ exports.confirmationEmail = (req, res) => {
             .save()
             .then(res.json("user confirmed"))
             .catch((err) => res.status(400).json("err" + err));
-
-          // });
-          // if(payload.email===req.params.id){
-          // //   console.log("decode:"+decoded)
-          // //   req.decoded = decoded;
-          // // next();
-          // }else{
-          //   console.log("token exist but use not exact");
-          //   return res.json({
-          //     success: false,
-          //     message: "Token is valid user does not match"
-          //   });
-          // }
         }
       });
     }
   });
 };
+/* -------------------------------------------------------------------------- */

@@ -58,9 +58,13 @@ router.post(
 
 router.get("/confirmation/:token", authController.confirmationEmail);
 
+/* ------------------------------ google oAuth ------------------------------ */
+
 router.post(
   "/oauth/google",
   passport.authenticate("googleToken", { session: false }),
   authController.oauthGoogle
 );
+/* -------------------------------------------------------------------------- */
+
 module.exports = router;
